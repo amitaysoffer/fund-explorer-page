@@ -6,6 +6,9 @@ import GridView from "./components/GridView";
 import ViewTabs from "./components/ViewTabs";
 import SidePanel from "./components/SidePanel";
 import Managers from "./components/Managers";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import HeaderBanner from "./components/HeaderBanner";
 
 export type Fund = {
   id: number;
@@ -28,15 +31,51 @@ export type FilterKeys = keyof Pick<Fund, "region" | "domicile">;
 
 export default function App() {
   const [funds, setFunds] = useState<Fund[]>(data);
-  const [inputValue, setInputValue] = useState("");
-  const [viewTab, setViewTab] = useState<ViewTab>("list");
   const [showManagers, setShowManagers] = useState(false);
+  const [viewTab, setViewTab] = useState<ViewTab>("list");
+  const [inputValue, setInputValue] = useState("");
   const [selectedFiltersRegion, setSelectedFiltersRegion] = useState<string[]>(
     []
   );
   const [selectedFiltersDomicile, setSelectedFiltersDomicile] = useState<
     string[]
   >([]);
+
+  function handleFilterRegionRadioClick(category: string) {
+    if (selectedFiltersRegion.includes(category)) {
+      const filters = selectedFiltersRegion.filter((item) => item !== category);
+      setSelectedFiltersRegion(filters);
+    } else {
+      setSelectedFiltersRegion([...selectedFiltersRegion, category]);
+    }
+  }
+
+  function handleFilterDomicileRadioClick(category: string) {
+    if (selectedFiltersDomicile.includes(category)) {
+      const filters = selectedFiltersDomicile.filter(
+        (item) => item !== category
+      );
+      setSelectedFiltersDomicile(filters);
+    } else {
+      setSelectedFiltersDomicile([...selectedFiltersDomicile, category]);
+    }
+  }
+
+  function filterDataByRegion() {
+    return selectedFiltersRegion
+      .map((selectedCategory) => {
+        return data.filter((item) => item.region === selectedCategory);
+      })
+      .flat();
+  }
+
+  function filterDataByDomicile() {
+    return selectedFiltersDomicile
+      .map((selectedCategory) => {
+        return data.filter((item) => item.domicile === selectedCategory);
+      })
+      .flat();
+  }
 
   useMemo(() => {
     // ! TODO: add also search by manager and benchmark
@@ -102,42 +141,6 @@ export default function App() {
       setFunds(filteredFunds);
     }
   }, [inputValue]);
-
-  function handleFilterRegionRadioClick(category: string) {
-    if (selectedFiltersRegion.includes(category)) {
-      const filters = selectedFiltersRegion.filter((item) => item !== category);
-      setSelectedFiltersRegion(filters);
-    } else {
-      setSelectedFiltersRegion([...selectedFiltersRegion, category]);
-    }
-  }
-
-  function handleFilterDomicileRadioClick(category: string) {
-    if (selectedFiltersDomicile.includes(category)) {
-      const filters = selectedFiltersDomicile.filter(
-        (item) => item !== category
-      );
-      setSelectedFiltersDomicile(filters);
-    } else {
-      setSelectedFiltersDomicile([...selectedFiltersDomicile, category]);
-    }
-  }
-
-  function filterDataByRegion() {
-    return selectedFiltersRegion
-      .map((selectedCategory) => {
-        return data.filter((item) => item.region === selectedCategory);
-      })
-      .flat();
-  }
-
-  function filterDataByDomicile() {
-    return selectedFiltersDomicile
-      .map((selectedCategory) => {
-        return data.filter((item) => item.domicile === selectedCategory);
-      })
-      .flat();
-  }
 
   // Region filter
   useMemo(() => {
@@ -284,7 +287,9 @@ export default function App() {
 
   return (
     <div className="bg-grayBg">
-      <main className="px-4">
+      <Header />
+      <HeaderBanner />
+      <main className="px-4 mt-14 pb-28">
         {showManagers && <Managers onShowManagers={setShowManagers} />}
         <div className="flex">
           <SidePanel
@@ -305,6 +310,7 @@ export default function App() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
