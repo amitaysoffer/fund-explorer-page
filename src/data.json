@@ -7,7 +7,9 @@
     "region": "Asia",
     "holdings": 41,
     "fund_size": "GBP 18.19m",
-    "launch_date": "30 Sep 2011"
+    "launch_date": "30 Sep 2011",
+    "manager_name": "Ada Chan",
+    "manager_image": "image_3"
   },
   {
     "id": 2,
@@ -17,7 +19,9 @@
     "region": "Asia",
     "holdings": 53,
     "fund_size": "GBP 22.46m",
-    "launch_date": "30 Sep 2011"
+    "launch_date": "30 Sep 2011",
+    "manager_name": "Cho-Yu Kooi",
+    "manager_image": "image_6"
   },
   {
     "id": 3,
@@ -27,7 +31,9 @@
     "region": "Europe",
     "holdings": 35,
     "fund_size": "GBP 541.94m",
-    "launch_date": "05 Nov 2001"
+    "launch_date": "05 Nov 2001",
+    "manager_name": "Luis Fananas",
+    "manager_image": "image_5"
   },
   {
     "id": 4,
@@ -37,7 +43,9 @@
     "region": "Europe",
     "holdings": 38,
     "fund_size": "GBP 200.74m",
-    "launch_date": "07 May 2003"
+    "launch_date": "07 May 2003",
+    "manager_name": "Luis Fananas",
+    "manager_image": "image_5"
   },
   {
     "id": 5,
@@ -47,7 +55,9 @@
     "region": "Emerging Markets",
     "holdings": 49,
     "fund_size": "GBP 199.03m",
-    "launch_date": "30 Jun 2011"
+    "launch_date": "30 Jun 2011",
+    "manager_name": "Emery Brewer",
+    "manager_image": "image_2"
   },
   {
     "id": 6,
@@ -87,7 +97,9 @@
     "region": "UK",
     "holdings": 39,
     "fund_size": "GBP 1.07bn",
-    "launch_date": "16 Jun 2008"
+    "launch_date": "16 Jun 2008",
+    "manager_name": "Clive Beagles",
+    "manager_image": "image_0"
   },
   {
     "id": 10,
@@ -97,7 +109,9 @@
     "region": "UK",
     "holdings": 41,
     "fund_size": "GBP 16.25m",
-    "launch_date": "27 Sep 2017"
+    "launch_date": "27 Sep 2017",
+    "manager_name": "Clive Beagles",
+    "manager_image": "image_0"
   },
   {
     "id": 11,
@@ -107,7 +121,9 @@
     "region": "UK",
     "holdings": 58,
     "fund_size": "GBP 1.46bn",
-    "launch_date": "30 Nov 2004"
+    "launch_date": "30 Nov 2004",
+    "manager_name": "Vishal Bhatia",
+    "manager_image": "image_1"
   },
   {
     "id": 12,
@@ -117,7 +133,9 @@
     "region": "UK",
     "holdings": 51,
     "fund_size": "GBP 150.74m",
-    "launch_date": "06 Nov 2001"
+    "launch_date": "06 Nov 2001",
+    "manager_name": "Vishal Bhatia",
+    "manager_image": "image_1"
   },
   {
     "id": 13,
@@ -127,6 +145,8 @@
     "region": "UK",
     "holdings": 28,
     "fund_size": "GBP 128.50m",
-    "launch_date": "30 Nov 2005"
+    "launch_date": "30 Nov 2005",
+    "manager_name": "Mark Costar",
+    "manager_image": "image_4"
   }
 ]

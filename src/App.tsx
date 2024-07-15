@@ -19,6 +19,8 @@ export type Fund = {
   holdings: number;
   fund_size: string;
   launch_date: string;
+  manager_name?: string;
+  manager_image?: string;
 };
 
 export type FundsViewProps = {
@@ -40,6 +42,7 @@ export default function App() {
   const [selectedFiltersDomicile, setSelectedFiltersDomicile] = useState<
     string[]
   >([]);
+  const [selectedManagers, setSelectedManagers] = useState<string[]>([]);
 
   function handleFilterRegionRadioClick(category: string) {
     if (selectedFiltersRegion.includes(category)) {
@@ -59,6 +62,11 @@ export default function App() {
     } else {
       setSelectedFiltersDomicile([...selectedFiltersDomicile, category]);
     }
+  }
+
+  function filterDataByManager(name: string) {
+    const filterByManagers = data.filter((item) => item.manager_name === name);
+    setFunds(filterByManagers);
   }
 
   function filterDataByRegion() {
@@ -289,8 +297,14 @@ export default function App() {
     <div className="bg-grayBg">
       <Header />
       <HeaderBanner />
-      <main className="px-4 mt-14 pb-28">
-        {showManagers && <Managers onShowManagers={setShowManagers} />}
+      {true && (
+        <Managers
+          onShowManagers={setShowManagers}
+          filterDataByManager={filterDataByManager}
+          selectManagers={setSelectedManagers}
+        />
+      )}
+      <main className="px-4 mt-10 pb-28">
         <div className="flex">
           <SidePanel
             showManagers={showManagers}
@@ -300,13 +314,16 @@ export default function App() {
             selectedFiltersRegion={selectedFiltersRegion}
             selectedFiltersDomicile={selectedFiltersDomicile}
           />
-          <div className=" ">
+          <div className="border-l pl-10 border-light-gray">
             <div className="flex items-center gap-10">
               <SearchInput input={inputValue} onChange={setInputValue} />
               <ViewTabs changeView={setViewTab} />
             </div>
             {viewTab === "list" && <ListView funds={funds} />}
             {viewTab === "grid" && <GridView funds={funds} />}
+            <p className="text-right mt-5 pt-5 text-gray-500 border-t border-light-gray">
+              All data as at 29 February 2024
+            </p>
           </div>
         </div>
       </main>
