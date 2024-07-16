@@ -4,8 +4,9 @@ import data from "../data.json";
 export default function useUniqueLetters() {
   const uniqueLetters = useMemo(() => {
     const managersNames = data.reduce((acc: string[], current) => {
-      if (current.manager_name) {
-        return [...acc, current.manager_name];
+      const manager = current.data.manager.fund_manager;
+      if (manager) {
+        return [...acc, manager];
       }
 
       return acc;

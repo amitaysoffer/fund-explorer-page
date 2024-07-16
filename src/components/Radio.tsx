@@ -38,6 +38,7 @@ export default function Radio({
         disabled={isFilterDisabled}
         type="checkbox"
         name={filter}
+        aria-label={filter}
         onChange={() => onClick(filter)}
         value={filter}
         checked={selectedFilters.includes(filter)}

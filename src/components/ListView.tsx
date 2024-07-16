@@ -1,3 +1,4 @@
+import RightArrow from "../assets/icons/RightArrow";
 import { Funds } from "../types/funds";
 
 export default function ListView({ funds }: Funds) {
@@ -27,7 +28,7 @@ export default function ListView({ funds }: Funds) {
           },
         } = fund;
         return (
-          <div key={id} className="pb-6">
+          <div key={id} className="pb-6" data-testid="fund">
             <div className="grid grid-cols-8 items-center bg-white shadow-md px-4 hover:shadow-xl">
               <div className="py-3 col-span-2">
                 <div className="font-semibold">{name}</div>
@@ -38,7 +39,11 @@ export default function ListView({ funds }: Funds) {
               <div className="py-3">{holdings}</div>
               <div className="py-3">{size}</div>
               <div className="py-3">{launch_date}</div>
-              <div className="py-3 text-blue-600 cursor-pointer">→</div>
+              <div className="py-3">
+                <div className="border inline-block p-2 text-light-gray border-gray-light rounded-full cursor-pointer">
+                  <RightArrow />
+                </div>
+              </div>
             </div>
           </div>
         );

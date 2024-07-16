@@ -20,22 +20,27 @@ export default function App() {
   const [selectedManagers, setSelectedManagers] = useState<string[]>([]);
 
   const filteredFunds: Fund[] = data.filter((fund) => {
+    const data = fund.data;
     const matchesSearch =
       !inputValue ||
-      fund.data.fund_name.toLowerCase().includes(inputValue.toLowerCase());
+      data.fund_name.toLowerCase().includes(inputValue.toLowerCase()) ||
+      data.fund_benchmark.toLowerCase().includes(inputValue.toLowerCase()) ||
+      data.manager.fund_manager
+        ?.toLowerCase()
+        .includes(inputValue.toLowerCase());
 
     const matchesRegion =
       selectedRegions.length === 0 ||
-      selectedRegions.includes(fund.data.details.region);
+      selectedRegions.includes(data.details.region);
 
     const matchesDomicile =
       selectedDomiciles.length === 0 ||
-      selectedDomiciles.includes(fund.data.details.domicile);
+      selectedDomiciles.includes(data.details.domicile);
 
     const matchesManager =
       selectedManagers.length === 0 ||
-      (fund.data.manager.fund_manager &&
-        selectedManagers.includes(fund.data.manager.fund_manager));
+      (data.manager.fund_manager &&
+        selectedManagers.includes(data.manager.fund_manager));
 
     return matchesSearch && matchesRegion && matchesDomicile && matchesManager;
   });
@@ -105,7 +110,7 @@ export default function App() {
             clearAll={clearAllRadioFilters}
           />
           <div className="border-l pl-10 border-light-gray">
-            <div className="flex items-center gap-10">
+            <div className="flex items-center gap-10 relative">
               <SearchInput input={inputValue} onChange={setInputValue} />
               <ViewTabs changeView={setViewTab} />
             </div>

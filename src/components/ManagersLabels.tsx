@@ -20,7 +20,10 @@ export default function ManagersLabels({
               <span>Clear managers</span>
             </li>
             {managers.map((manager) => (
-              <li className="flex justify-between items-center gap-3 p-2 bg-white">
+              <li
+                key={manager}
+                className="flex justify-between items-center gap-3 p-2 bg-white"
+              >
                 <button onClick={() => filterManager(manager)}>X</button>
                 <span>{manager}</span>
               </li>

@@ -1,3 +1,4 @@
+import RightArrow from "../assets/icons/RightArrow";
 import data from "../data.json";
 import { Fund } from "../types/funds";
 import { getFundsCategories } from "../util";
@@ -46,8 +47,9 @@ export default function SidePanel({
       <div>
         <div className="flex flex-col gap-2">
           <h3 className="capitalize">Region</h3>
-          {regions.map((region) => (
+          {regions.map((region, index) => (
             <Radio
+              key={index}
               filter={region}
               category="region"
               onClick={handleFilterByRegion}
@@ -59,8 +61,9 @@ export default function SidePanel({
         </div>
         <div className="flex flex-col gap-2 mt-3">
           <h3 className="capitalize">Domicile</h3>
-          {domiciles.map((domicile) => (
+          {domiciles.map((domicile, index) => (
             <Radio
+              key={index}
               filter={domicile}
               category="domicile"
               onClick={handleFilterByDomicile}
@@ -74,9 +77,14 @@ export default function SidePanel({
       {!showManagers && (
         <button
           onClick={() => onShowManagers(true)}
-          className="p-4 bg-white rounded-full"
+          className="px-5 py-3 bg-white rounded-full"
         >
-          Show Managers
+          <div className="flex items-center gap-3">
+            <span>Show Managers</span>
+            <div className="text-white bg-teal-500 rounded-full p-2">
+              <RightArrow />
+            </div>
+          </div>
         </button>
       )}
     </div>

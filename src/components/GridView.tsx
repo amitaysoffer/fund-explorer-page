@@ -1,3 +1,4 @@
+import RightArrow from "../assets/icons/RightArrow";
 import { Funds } from "../types/funds";
 
 export default function GridView({ funds }: Funds) {
@@ -34,7 +35,9 @@ export default function GridView({ funds }: Funds) {
               </div>
               <div className="flex items-center justify-between">
                 <h5>Monthly portfolio fact sheet</h5>
-                <div>arrow</div>
+                <div className="border inline-block p-2 text-light-gray border-gray-light rounded-full cursor-pointer">
+                  <RightArrow />
+                </div>
               </div>
             </div>
           </div>
