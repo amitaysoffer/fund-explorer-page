@@ -1,37 +1,50 @@
-import { FilterKeys } from "../App";
+import { Category, Fund } from "../types/funds";
 
 type RadioProps = {
-  categories: string[];
-  label: FilterKeys;
-  handleFilterRadioClick: (category: string) => void;
+  filter: string;
+  category: Category;
+  onClick: (category: string) => void;
   selectedFilters: string[];
+  funds: Fund[];
+  selectedManagers: string[];
 };
 
 export default function Radio({
-  categories,
-  label,
-  handleFilterRadioClick,
+  category,
+  filter,
+  onClick,
   selectedFilters,
+  funds,
+  selectedManagers,
 }: RadioProps) {
+  const activeFilters = funds.reduce((acc: string[], fund: Fund) => {
+    if (!acc.includes(fund.data.details[category])) {
+      return [...acc, fund.data.details[category]];
+    }
+
+    return acc;
+  }, []);
+
+  const isFilterDisabled =
+    !activeFilters.includes(filter) && selectedManagers.length > 0;
+
   return (
-    <div>
-      <h3 className="capitalize">{label}</h3>
-      <div className="flex flex-col gap-2">
-        {categories.map((cat, index) => (
-          <label key={index} className="flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              name={label}
-              onChange={() => handleFilterRadioClick(cat)}
-              value={cat}
-              checked={selectedFilters.includes(cat)}
-              className="hidden peer"
-            />
-            <span className="w-5 h-5 border border-teal-600 bg-white peer-checked:bg-teal-check"></span>
-            <span className="ml-2 text-blue-light">{cat}</span>
-          </label>
-        ))}
-      </div>
-    </div>
+    <label
+      className={`flex items-center cursor-pointer ${
+        isFilterDisabled ? "opacity-50 cursor-not-allowed" : ""
+      }`}
+    >
+      <input
+        disabled={isFilterDisabled}
+        type="checkbox"
+        name={filter}
+        onChange={() => onClick(filter)}
+        value={filter}
+        checked={selectedFilters.includes(filter)}
+        className="hidden peer"
+      />
+      <span className="w-5 h-5 border border-teal-600 bg-white peer-checked:bg-teal-check"></span>
+      <span className="ml-2 text-blue-light">{filter}</span>
+    </label>
   );
 }

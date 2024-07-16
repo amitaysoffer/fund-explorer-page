@@ -1,10 +1,16 @@
-import { FundsViewProps } from "../App";
+import { Funds } from "../types/funds";
 
-export default function GridView({ funds }: FundsViewProps) {
+export default function GridView({ funds }: Funds) {
   return (
     <div className="grid grid-cols-3 gap-10">
       {funds.map((fund) => {
-        const { id, name, domicile, fund_size, holdings, launch_date } = fund;
+        const {
+          id,
+          data: {
+            fund_name: name,
+            details: { domicile, holdings, fund_size, launch_date },
+          },
+        } = fund;
         return (
           <div key={id}>
             <div className="bg-darkBlue h-28 text-white flex justify-between flex-col  p-3">

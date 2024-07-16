@@ -1,7 +1,9 @@
-export function reduceValues<T>(data: T[], key: keyof T) {
-  return data.reduce((acc: unknown[], current: T) => {
-    if (!acc.includes(current[key])) {
-      return [...acc, current[key]];
+import { Category, Fund } from "./types/funds";
+
+export function getFundsCategories(data: Fund[], key: Category) {
+  return data.reduce((acc: string[], current: Fund) => {
+    if (!acc.includes(current.data.details[key])) {
+      return [...acc, current.data.details[key]];
     }
 
     return acc;

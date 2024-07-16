@@ -1,4 +1,4 @@
-import { ViewTab } from "../App";
+import { ViewTab } from "../types/funds";
 
 type ViewTabsProps = {
   changeView: (tab: ViewTab) => void;

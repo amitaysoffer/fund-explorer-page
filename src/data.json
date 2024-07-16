@@ -1,152 +1,249 @@
 [
   {
     "id": 1,
-    "name": "JOHCM Asia ex Japan Fund",
-    "benchmark": "MSCI AC Asia ex Japan NR",
-    "domicile": "Dublin",
-    "region": "Asia",
-    "holdings": 41,
-    "fund_size": "GBP 18.19m",
-    "launch_date": "30 Sep 2011",
-    "manager_name": "Ada Chan",
-    "manager_image": "image_3"
+    "data": {
+      "fund_name": "JOHCM UK Dynamic Fund",
+      "fund_benchmark": "FTSE All-Share TR",
+      "manager": {
+        "fund_manager": "Clive Beagles",
+        "manager_image": "image_0",
+        "manager_id": 101
+      },
+      "details": {
+        "domicile": "London",
+        "region": "UK",
+        "holdings": 39,
+        "fund_size": "GBP 1.07bn",
+        "launch_date": "16 Jun 2008"
+      }
+    }
   },
   {
     "id": 2,
-    "name": "JOHCM Asia ex Japan Small and Mid Cap Fund",
-    "benchmark": "MSCI AC Asia ex Japan Small Cap NR",
-    "domicile": "Dublin",
-    "region": "Asia",
-    "holdings": 53,
-    "fund_size": "GBP 22.46m",
-    "launch_date": "30 Sep 2011",
-    "manager_name": "Cho-Yu Kooi",
-    "manager_image": "image_6"
+    "data": {
+      "fund_name": "JOHCM UK Dynamic Fund",
+      "fund_benchmark": "FTSE All-Share TR",
+      "manager": {
+        "fund_manager": "Clive Beagles",
+        "manager_image": "image_0",
+        "manager_id": 102
+      },
+      "details": {
+        "domicile": "Dublin",
+        "region": "UK",
+        "holdings": 41,
+        "fund_size": "GBP 16.25m",
+        "launch_date": "27 Sep 2017"
+      }
+    }
   },
   {
     "id": 3,
-    "name": "JOHCM Continental European Fund",
-    "benchmark": "MSCI Europe ex UK NR Index",
-    "domicile": "Dublin",
-    "region": "Europe",
-    "holdings": 35,
-    "fund_size": "GBP 541.94m",
-    "launch_date": "05 Nov 2001",
-    "manager_name": "Luis Fananas",
-    "manager_image": "image_5"
+    "data": {
+      "fund_name": "JOHCM UK Equity Income Fund",
+      "fund_benchmark": "FTSE All-Share TR",
+      "manager": {
+        "fund_manager": "Vishal Bhatia",
+        "manager_image": "image_1",
+        "manager_id": 103
+      },
+      "details": {
+        "domicile": "London",
+        "region": "UK",
+        "holdings": 58,
+        "fund_size": "GBP 1.46bn",
+        "launch_date": "30 Nov 2004"
+      }
+    }
   },
   {
     "id": 4,
-    "name": "JOHCM European Select Values Fund",
-    "benchmark": "MSCI Europe NR Index",
-    "domicile": "Dublin",
-    "region": "Europe",
-    "holdings": 38,
-    "fund_size": "GBP 200.74m",
-    "launch_date": "07 May 2003",
-    "manager_name": "Luis Fananas",
-    "manager_image": "image_5"
+    "data": {
+      "fund_name": "JOHCM UK Growth Fund",
+      "fund_benchmark": "FTSE All-Share TR",
+      "manager": {
+        "fund_manager": "Vishal Bhatia",
+        "manager_image": "image_1",
+        "manager_id": 104
+      },
+      "details": {
+        "domicile": "Dublin",
+        "region": "UK",
+        "holdings": 51,
+        "fund_size": "GBP 150.74m",
+        "launch_date": "06 Nov 2001"
+      }
+    }
   },
   {
     "id": 5,
-    "name": "JOHCM Global Emerging Markets Opportunities Fund",
-    "benchmark": "MSCI Emerging Markets NR",
-    "domicile": "Dublin",
-    "region": "Emerging Markets",
-    "holdings": 49,
-    "fund_size": "GBP 199.03m",
-    "launch_date": "30 Jun 2011",
-    "manager_name": "Emery Brewer",
-    "manager_image": "image_2"
+    "data": {
+      "fund_name": "JOHCM Global Emerging Markets Opportunities Fund",
+      "fund_benchmark": "MSCI Emerging Markets NR",
+      "manager": {
+        "fund_manager": "Emery Brewer",
+        "manager_image": "image_2",
+        "manager_id": 105
+      },
+      "details": {
+        "domicile": "Dublin",
+        "region": "Emerging Markets",
+        "holdings": 49,
+        "fund_size": "GBP 199.03m",
+        "launch_date": "30 Jun 2011"
+      }
+    }
   },
   {
     "id": 6,
-    "name": "JOHCM Global Opportunities Fund",
-    "benchmark": "MSCI AC World NR",
-    "domicile": "Dublin",
-    "region": "Global",
-    "holdings": 40,
-    "fund_size": "GBP 568.94m",
-    "launch_date": "29 Jun 2012"
+    "data": {
+      "fund_name": "JOHCM Asia ex Japan Fund",
+      "fund_benchmark": "MSCI AC Asia ex Japan NR",
+      "manager": {
+        "fund_manager": "Ada Chan",
+        "manager_image": "image_3",
+        "manager_id": 106
+      },
+      "details": {
+        "domicile": "Dublin",
+        "region": "Asia",
+        "holdings": 41,
+        "fund_size": "GBP 18.19m",
+        "launch_date": "30 Sep 2011"
+      }
+    }
   },
   {
     "id": 7,
-    "name": "JOHCM Global Opportunities Fund",
-    "benchmark": "MSCI AC World NR",
-    "domicile": "London",
-    "region": "Global",
-    "holdings": 40,
-    "fund_size": "GBP 58.33m",
-    "launch_date": "03 May 2019"
+    "data": {
+      "fund_name": "JOHCM UK Opportunities Fund",
+      "fund_benchmark": "FTSE All-Share TR",
+      "manager": {
+        "fund_manager": "Mark Costar",
+        "manager_image": "image_4",
+        "manager_id": 107
+      },
+      "details": {
+        "domicile": "London",
+        "region": "UK",
+        "holdings": 28,
+        "fund_size": "GBP 128.50m",
+        "launch_date": "30 Nov 2005"
+      }
+    }
   },
   {
     "id": 8,
-    "name": "JOHCM Global Select Fund",
-    "benchmark": "MSCI AC World NR",
-    "domicile": "Dublin",
-    "region": "Global",
-    "holdings": 40,
-    "fund_size": "GBP 1.23bn",
-    "launch_date": "30 Sep 2008"
+    "data": {
+      "fund_name": "JOHCM Continental European Fund",
+      "fund_benchmark": "MSCI Europe ex UK NR Index",
+      "manager": {
+        "fund_manager": "Luis Fananas",
+        "manager_image": "image_5",
+        "manager_id": 108
+      },
+      "details": {
+        "domicile": "Dublin",
+        "region": "Europe",
+        "holdings": 35,
+        "fund_size": "GBP 541.94m",
+        "launch_date": "05 Nov 2001"
+      }
+    }
   },
   {
     "id": 9,
-    "name": "JOHCM UK Dynamic Fund",
-    "benchmark": "FTSE All-Share TR",
-    "domicile": "London",
-    "region": "UK",
-    "holdings": 39,
-    "fund_size": "GBP 1.07bn",
-    "launch_date": "16 Jun 2008",
-    "manager_name": "Clive Beagles",
-    "manager_image": "image_0"
+    "data": {
+      "fund_name": "JOHCM European Select Values Fund",
+      "fund_benchmark": "MSCI Europe NR Index",
+      "manager": {
+        "fund_manager": "Luis Fananas",
+        "manager_image": "image_5",
+        "manager_id": 109
+      },
+      "details": {
+        "domicile": "Dublin",
+        "region": "Europe",
+        "holdings": 38,
+        "fund_size": "GBP 200.74m",
+        "launch_date": "07 May 2003"
+      }
+    }
   },
   {
     "id": 10,
-    "name": "JOHCM UK Dynamic Fund",
-    "benchmark": "FTSE All-Share TR",
-    "domicile": "Dublin",
-    "region": "UK",
-    "holdings": 41,
-    "fund_size": "GBP 16.25m",
-    "launch_date": "27 Sep 2017",
-    "manager_name": "Clive Beagles",
-    "manager_image": "image_0"
+    "data": {
+      "fund_name": "JOHCM Asia ex Japan Small and Mid Cap Fund",
+      "fund_benchmark": "MSCI AC Asia ex Japan Small Cap NR",
+      "manager": {
+        "fund_manager": "Cho-Yu Kooi",
+        "manager_image": "image_6",
+        "manager_id": 110
+      },
+      "details": {
+        "domicile": "Dublin",
+        "region": "Asia",
+        "holdings": 53,
+        "fund_size": "GBP 22.46m",
+        "launch_date": "30 Sep 2011"
+      }
+    }
   },
   {
     "id": 11,
-    "name": "JOHCM UK Equity Income Fund",
-    "benchmark": "FTSE All-Share TR",
-    "domicile": "London",
-    "region": "UK",
-    "holdings": 58,
-    "fund_size": "GBP 1.46bn",
-    "launch_date": "30 Nov 2004",
-    "manager_name": "Vishal Bhatia",
-    "manager_image": "image_1"
+    "data": {
+      "fund_name": "JOHCM Global Opportunities Fund",
+      "fund_benchmark": "MSCI AC World NR",
+      "manager": {
+        "fund_manager": null,
+        "manager_image": null,
+        "manager_id": 111
+      },
+      "details": {
+        "domicile": "Dublin",
+        "region": "Global",
+        "holdings": 40,
+        "fund_size": "GBP 568.94m",
+        "launch_date": "29 Jun 2012"
+      }
+    }
   },
   {
     "id": 12,
-    "name": "JOHCM UK Growth Fund",
-    "benchmark": "FTSE All-Share TR",
-    "domicile": "Dublin",
-    "region": "UK",
-    "holdings": 51,
-    "fund_size": "GBP 150.74m",
-    "launch_date": "06 Nov 2001",
-    "manager_name": "Vishal Bhatia",
-    "manager_image": "image_1"
+    "data": {
+      "fund_name": "JOHCM Global Opportunities Fund",
+      "fund_benchmark": "MSCI AC World NR",
+      "manager": {
+        "fund_manager": null,
+        "manager_image": null,
+        "manager_id": 112
+      },
+      "details": {
+        "domicile": "London",
+        "region": "Global",
+        "holdings": 40,
+        "fund_size": "GBP 58.33m",
+        "launch_date": "03 May 2019"
+      }
+    }
   },
   {
     "id": 13,
-    "name": "JOHCM UK Opportunities Fund",
-    "benchmark": "FTSE All-Share TR",
-    "domicile": "London",
-    "region": "UK",
-    "holdings": 28,
-    "fund_size": "GBP 128.50m",
-    "launch_date": "30 Nov 2005",
-    "manager_name": "Mark Costar",
-    "manager_image": "image_4"
+    "data": {
+      "fund_name": "JOHCM Global Select Fund",
+      "fund_benchmark": "MSCI AC World NR",
+      "manager": {
+        "fund_manager": null,
+        "manager_image": null,
+        "manager_id": 113
+      },
+      "details": {
+        "domicile": "Dublin",
+        "region": "Global",
+        "holdings": 40,
+        "fund_size": "GBP 1.23bn",
+        "launch_date": "30 Sep 2008"
+      }
+    }
   }
 ]

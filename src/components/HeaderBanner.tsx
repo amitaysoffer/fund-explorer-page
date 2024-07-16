@@ -8,7 +8,7 @@ export default function HeaderBanner() {
         alt="background-hero"
         className="absolute w-full h-full"
       />
-      <div className="relative z-10 flex flex-col justify-evenly h-full container mx-auto text-white">
+      <div className="relative px-6 z-10 flex flex-col justify-evenly h-full container mx-auto text-white">
         <nav className="text-sm mb-2">
           <a href="/" className="underline">
             Home

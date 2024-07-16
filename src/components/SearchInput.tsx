@@ -5,7 +5,7 @@ type SearchInputProps = {
 export default function SearchInput({ input, onChange }: SearchInputProps) {
   return (
     <input
-      className="grow p-4 border-2 border-red-500"
+      className="grow p-4 border-2"
       type="text"
       value={input}
       onChange={(e) => onChange(e.target.value)}

@@ -1,48 +1,75 @@
-import { useMemo } from "react";
 import data from "../data.json";
-import { reduceValues } from "../util";
+import { Fund } from "../types/funds";
+import { getFundsCategories } from "../util";
 import Radio from "./Radio";
 
 type SidePanelProps = {
   onShowManagers: (val: boolean) => void;
   showManagers: boolean;
-  handleFilterRegionRadioClick: (category: string) => void;
-  handleFilterDomicileRadioClick: (category: string) => void;
-  selectedFiltersRegion: string[];
-  selectedFiltersDomicile: string[];
+  handleFilterByRegion: (category: string) => void;
+  handleFilterByDomicile: (category: string) => void;
+  selectedRegions: string[];
+  selectedDomiciles: string[];
+  funds: Fund[];
+  selectedManagers: string[];
+  clearAll: () => void;
 };
 
 export default function SidePanel({
   onShowManagers,
   showManagers,
-  handleFilterRegionRadioClick,
-  handleFilterDomicileRadioClick,
-  selectedFiltersRegion,
-  selectedFiltersDomicile,
+  handleFilterByRegion,
+  handleFilterByDomicile,
+  selectedRegions,
+  selectedDomiciles,
+  funds,
+  selectedManagers,
+  clearAll,
 }: SidePanelProps) {
-  const domiciles = useMemo(() => {
-    return reduceValues(data, "domicile");
-  }, []);
-  const regions = useMemo(() => {
-    return reduceValues(data, "region");
-  }, []);
+  const regions = getFundsCategories(data, "region");
+  const domiciles = getFundsCategories(data, "domicile");
 
   return (
     <div className="w-96 flex flex-col gap-5 items-start">
-      <h2 className="text-5xl">Filter</h2>
+      <div className="flex items-center justify-between w-full">
+        <h2 className="text-3xl font-light">Filter</h2>
+        {(selectedRegions.length > 0 || selectedDomiciles.length > 0) && (
+          <button
+            onClick={clearAll}
+            className="bg-red-700 text-white px-3 py-2"
+          >
+            Clear all
+          </button>
+        )}
+      </div>
+
       <div>
-        <Radio
-          categories={regions}
-          label="region"
-          handleFilterRadioClick={handleFilterRegionRadioClick}
-          selectedFilters={selectedFiltersRegion}
-        />
-        <Radio
-          categories={domiciles}
-          label="domicile"
-          handleFilterRadioClick={handleFilterDomicileRadioClick}
-          selectedFilters={selectedFiltersDomicile}
-        />
+        <div className="flex flex-col gap-2">
+          <h3 className="capitalize">Region</h3>
+          {regions.map((region) => (
+            <Radio
+              filter={region}
+              category="region"
+              onClick={handleFilterByRegion}
+              selectedFilters={selectedRegions}
+              funds={funds}
+              selectedManagers={selectedManagers}
+            />
+          ))}
+        </div>
+        <div className="flex flex-col gap-2 mt-3">
+          <h3 className="capitalize">Domicile</h3>
+          {domiciles.map((domicile) => (
+            <Radio
+              filter={domicile}
+              category="domicile"
+              onClick={handleFilterByDomicile}
+              selectedFilters={selectedDomiciles}
+              funds={funds}
+              selectedManagers={selectedManagers}
+            />
+          ))}
+        </div>
       </div>
       {!showManagers && (
         <button

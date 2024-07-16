@@ -1,6 +1,6 @@
-import { FundsViewProps } from "../App";
+import { Funds } from "../types/funds";
 
-export default function ListView({ funds }: FundsViewProps) {
+export default function ListView({ funds }: Funds) {
   return (
     <div className="overflow-x-auto">
       <div className="grid grid-cols-8 text-left font-semibold pb-4">
@@ -14,13 +14,17 @@ export default function ListView({ funds }: FundsViewProps) {
       {funds.map((fund) => {
         const {
           id,
-          name,
-          benchmark,
-          domicile,
-          fund_size,
-          holdings,
-          launch_date,
-          region,
+          data: {
+            fund_name: name,
+            fund_benchmark: benchmark,
+            details: {
+              domicile,
+              region,
+              holdings,
+              fund_size: size,
+              launch_date,
+            },
+          },
         } = fund;
         return (
           <div key={id} className="pb-6">
@@ -29,12 +33,12 @@ export default function ListView({ funds }: FundsViewProps) {
                 <div className="font-semibold">{name}</div>
                 <div className="text-sm text-gray-600">{benchmark}</div>
               </div>
-              <div className="py-3 ">{domicile}</div>
-              <div className="py-3 ">{region}</div>
-              <div className="py-3 ">{holdings}</div>
-              <div className="py-3 ">{fund_size}</div>
-              <div className="py-3 ">{launch_date}</div>
-              <div className="py-3  text-blue-600 cursor-pointer">→</div>
+              <div className="py-3">{domicile}</div>
+              <div className="py-3">{region}</div>
+              <div className="py-3">{holdings}</div>
+              <div className="py-3">{size}</div>
+              <div className="py-3">{launch_date}</div>
+              <div className="py-3 text-blue-600 cursor-pointer">→</div>
             </div>
           </div>
         );
