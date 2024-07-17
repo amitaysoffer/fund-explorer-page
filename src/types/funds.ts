@@ -28,6 +28,8 @@ export type Funds = {
   funds: Fund[];
 };
 
+export type sortOrder = "asc" | "desc";
+
 export type Category = keyof Pick<FundDetails, "region" | "domicile">;
 
 export type ViewTab = "list" | "grid";

@@ -4,11 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        grayBg: "#f0eeeb",
+        "gray-bg": "#f0eeeb",
         "light-gray": "#d1ccc3",
-        darkBlue: "#1d2e50",
+        "dark-blue": "#1d2e50",
         "teal-check": "#019e99",
-        "blue-light": "#1d2e50",
+        "asia-colour": "#006664",
+        "europe-colour": "#066b8e",
+        "global-colour": "#de7900",
+        "uk-colour": "#3a8ac9",
+        "emerging-colour": "#019e99",
+      },
+      gridTemplateColumns: {
+        "20-80": "20% 80%",
       },
     },
   },

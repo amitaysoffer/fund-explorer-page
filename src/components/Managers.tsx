@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import data from "../data.json";
 import ManagerCard from "./ManagerCard";
 import Letters from "./Letters";
@@ -9,19 +9,19 @@ type ManagersProps = {
   onShowManagers: (val: boolean) => void;
   handleFilterByManager: (category: string) => void;
   selectedManagers: string[];
-  clearAll: () => void;
+  clearAllManagers: () => void;
 };
 
 export default function Managers({
   onShowManagers,
   handleFilterByManager,
   selectedManagers,
-  clearAll,
+  clearAllManagers,
 }: ManagersProps) {
   const [currentLetter, setCurrentLetter] = useState("All");
 
-  const uniqueFundsPerManager = useMemo(() => {
-    const managerMap = data.reduce((acc: Record<string, Fund>, fund: Fund) => {
+  const uniqueFundsPerManager = Object.values(
+    data.reduce((acc: Record<string, Fund>, fund: Fund) => {
       if (
         fund.data.manager.fund_manager &&
         !acc[fund.data.manager.fund_manager]
@@ -29,7 +29,7 @@ export default function Managers({
         if (currentLetter === "All") {
           acc[fund.data.manager.fund_manager] = fund;
         } else if (
-          fund.data.manager.fund_manager
+          fund.data.manager.fund_manager[0]
             .toLowerCase()
             .includes(currentLetter.toLowerCase())
         ) {
@@ -38,26 +38,28 @@ export default function Managers({
       }
 
       return acc;
-    }, {});
-
-    return Object.values(managerMap);
-  }, [currentLetter]);
+    }, {})
+  );
 
   return (
-    <div>
-      <div className="mb-6 border-b border-light-gray py-6 px-6">
+    <section>
+      <div className="mb-6 border-b border-light-gray py-6 px-8">
         <Letters
           setCurrentLetter={setCurrentLetter}
           currentLetter={currentLetter}
           onShowManagers={onShowManagers}
+          clearAllManagers={clearAllManagers}
         />
         <div>
           <ul className="overflow-x-auto flex gap-4">
             {uniqueFundsPerManager.map(
               ({
-                id,
                 data: {
-                  manager: { manager_image, fund_manager: name },
+                  manager: {
+                    manager_image,
+                    fund_manager: name,
+                    manager_id: id,
+                  },
                   details: { region },
                 },
               }) => (
@@ -76,9 +78,9 @@ export default function Managers({
         <ManagersLabels
           filterManager={handleFilterByManager}
           managers={selectedManagers}
-          clearAll={clearAll}
+          clearAllManagers={clearAllManagers}
         />
       </div>
-    </div>
+    </section>
   );
 }

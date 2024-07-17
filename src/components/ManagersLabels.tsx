@@ -1,12 +1,14 @@
+import CloseIcon from "../assets/icons/CloseIcon";
+
 type ManagerLabelsProps = {
   filterManager: (category: string) => void;
   managers: string[];
-  clearAll: () => void;
+  clearAllManagers: () => void;
 };
 
 export default function ManagersLabels({
   managers,
-  clearAll,
+  clearAllManagers,
   filterManager,
 }: ManagerLabelsProps) {
   return (
@@ -15,18 +17,23 @@ export default function ManagersLabels({
         <div className="flex justify-between items-center border border-t-light-gray mt-6 pt-6">
           <h3>Selected manager(s)</h3>
           <ul className="flex flex-row-reverse gap-3">
-            <li className="flex p-2 gap-3 justify-between items-center bg-red-700 text-white">
-              <button onClick={clearAll}>X</button>
+            <button
+              onClick={clearAllManagers}
+              className="flex p-2 gap-2 items-center bg-red-700 text-white"
+            >
+              <CloseIcon />
               <span>Clear managers</span>
-            </li>
+            </button>
+
             {managers.map((manager) => (
-              <li
+              <button
                 key={manager}
-                className="flex justify-between items-center gap-3 p-2 bg-white"
+                className="flex justify-between items-center gap-2 p-2 bg-white"
+                onClick={() => filterManager(manager)}
               >
-                <button onClick={() => filterManager(manager)}>X</button>
+                <CloseIcon />
                 <span>{manager}</span>
-              </li>
+              </button>
             ))}
           </ul>
         </div>

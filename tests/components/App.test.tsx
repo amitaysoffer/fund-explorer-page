@@ -6,18 +6,26 @@ import App from "../../src/App";
 
 describe("App component", () => {
   let user: UserEvent;
+  let input: HTMLInputElement;
+  let checkboxUK: HTMLInputElement;
+  let checkboxDublin: HTMLInputElement;
+  let checkboxLondon: HTMLInputElement;
 
   beforeEach(() => {
     render(<App />);
     user = userEvent.setup();
+    input = screen.getByRole("textbox", { name: "search" });
+    checkboxUK = screen.getByRole("checkbox", { name: /uk/i });
+    checkboxDublin = screen.getByRole("checkbox", { name: /dublin/i });
+    checkboxLondon = screen.getByRole("checkbox", { name: /london/i });
   });
 
   function getFunds() {
     return screen.getAllByTestId("fund");
   }
 
-  function filterFundsByText(funds: HTMLElement[], text: string) {
-    return funds.filter((fund) =>
+  function filterFundsByText(fundsElements: HTMLElement[], text: string) {
+    return fundsElements.filter((fund) =>
       fund.textContent?.toLowerCase().includes(text)
     );
   }
@@ -27,7 +35,6 @@ describe("App component", () => {
     expect(funds).toHaveLength(13);
   });
   it("displays a not found message", async () => {
-    const input = screen.getByRole("textbox", { name: "search" });
     await user.type(input, "blah blah");
 
     const notFoundHeading = await screen.findByRole("heading", {
@@ -37,66 +44,93 @@ describe("App component", () => {
     expect(notFoundHeading).toBeInTheDocument();
   });
   it("displays only funds of region asia", async () => {
-    const input = screen.getByRole("textbox", { name: "search" });
-
     await user.type(input, "asia");
-    let funds = await screen.findAllByTestId("fund");
+    const funds = getFunds();
     const fundsWithRegionAsia = filterFundsByText(funds, "asia");
 
     expect(funds).toHaveLength(2);
     expect(fundsWithRegionAsia).toHaveLength(2);
-
+  });
+  it("displays all funds after clears input", async () => {
+    await user.type(input, "opportunities");
     await user.clear(input);
-    funds = await screen.findAllByTestId("fund");
+    const funds = getFunds();
+
     expect(funds).toHaveLength(13);
   });
-  it("displays only funds UK or Europe", async () => {
-    const inputUK = screen.getByRole("checkbox", { name: "UK" });
-    const inputEurope = screen.getByRole("checkbox", { name: "Europe" });
+  it("displays funds with region UK and input text opportunities", async () => {
+    await user.type(input, "opportunities");
+    await user.click(checkboxUK);
 
-    await user.click(inputUK);
+    const funds = getFunds();
+    const fundsTextUKAndOpportunities = funds.filter(
+      (fund) =>
+        fund.textContent?.toLowerCase().includes("uk") &&
+        fund.textContent?.toLowerCase().includes("opportunities")
+    );
 
-    let funds = await screen.findAllByTestId("fund");
+    expect(funds).toHaveLength(1);
+    expect(fundsTextUKAndOpportunities).toHaveLength(1);
+  });
+  it("displays only funds region UK", async () => {
+    await user.click(checkboxUK);
+
+    const funds = getFunds();
     const fundsTextUK = filterFundsByText(funds, "uk");
 
     expect(funds).toHaveLength(5);
     expect(fundsTextUK).toHaveLength(5);
+  });
+  it("displays all funds after second click on same filter", async () => {
+    await user.click(checkboxUK);
+    await user.click(checkboxUK);
 
-    await user.click(inputEurope);
-    funds = await screen.findAllByTestId("fund");
-    const fundsTextUKOrEurope = funds.filter(
+    const funds = getFunds();
+
+    expect(funds).toHaveLength(13);
+  });
+  it("displays only funds regions UK and Europe", async () => {
+    const checkboxEurope = screen.getByRole("checkbox", { name: /europe/i });
+
+    await user.click(checkboxUK);
+    await user.click(checkboxEurope);
+
+    const funds = getFunds();
+    const fundsTextUKAndEurope = funds.filter(
       (fund) =>
         fund.textContent?.toLowerCase().includes("uk") ||
         fund.textContent?.toLowerCase().includes("europe")
     );
 
     expect(funds).toHaveLength(7);
-    expect(fundsTextUKOrEurope).toHaveLength(7);
+    expect(fundsTextUKAndEurope).toHaveLength(7);
   });
-  it("displays only funds London and/or Dublin", async () => {
-    const inputLondon = screen.getByRole("checkbox", { name: "London" });
-    const inputDublin = screen.getByRole("checkbox", { name: "Dublin" });
+  it("displays only funds domicile London", async () => {
+    await user.click(checkboxLondon);
 
-    await user.click(inputLondon);
-
-    let funds = await screen.findAllByTestId("fund");
+    const funds = getFunds();
     const fundsTextLondon = filterFundsByText(funds, "london");
 
     expect(funds).toHaveLength(4);
     expect(fundsTextLondon).toHaveLength(4);
-
-    await user.click(inputDublin);
-    funds = await screen.findAllByTestId("fund");
-    expect(funds).toHaveLength(13);
   });
-  it("displays only region UK and domicile Dublin", async () => {
-    const inputUK = screen.getByRole("checkbox", { name: "UK" });
-    const inputDublin = screen.getByRole("checkbox", { name: "Dublin" });
+  it("displays only funds domiciles London and Dublin", async () => {
+    await user.click(checkboxLondon);
+    await user.click(checkboxDublin);
 
-    await user.click(inputUK);
-    await user.click(inputDublin);
+    const funds = getFunds();
+    const fundsTextLondon = filterFundsByText(funds, "london");
+    const fundsTextDublin = filterFundsByText(funds, "dublin");
+    const fundsTextLondonAndDublin = [...fundsTextLondon, ...fundsTextDublin];
 
-    const funds = await screen.findAllByTestId("fund");
+    expect(funds).toHaveLength(13);
+    expect(fundsTextLondonAndDublin).toHaveLength(13);
+  });
+  it("displays only funds region UK and domicile Dublin", async () => {
+    await user.click(checkboxUK);
+    await user.click(checkboxDublin);
+
+    const funds = getFunds();
     const fundsTextUKAndDublin = funds.filter(
       (fund) =>
         fund.textContent?.toLowerCase().includes("uk") &&
@@ -106,33 +140,89 @@ describe("App component", () => {
     expect(funds).toHaveLength(2);
     expect(fundsTextUKAndDublin).toHaveLength(2);
   });
-  it("displays managers section and funds per manager clicked", async () => {
+  it("clears all filters and displays all funds", async () => {
+    await user.click(checkboxUK);
+    await user.click(checkboxDublin);
+
+    const clearAllButton = await screen.findByRole("button", {
+      name: /clear/i,
+    });
+    await user.click(clearAllButton);
+
+    const funds = getFunds();
+    expect(checkboxUK).not.toBeChecked();
+    expect(checkboxDublin).not.toBeChecked();
+    expect(funds).toHaveLength(13);
+  });
+  it("displays managers cards", async () => {
     const showManagersButton = screen.getByRole("button", {
       name: /show managers/i,
     });
 
-    let managerHeading = screen.queryByRole("heading", {
-      name: /filter by manager/i,
+    await user.click(showManagersButton);
+    const managers = await screen.findAllByTestId("manager");
+
+    expect(managers.length).toBeGreaterThan(0);
+  });
+  it("displays funds of selected manager and add css shadow to selected manager card", async () => {
+    const showManagersButton = screen.getByRole("button", {
+      name: /show managers/i,
     });
-    expect(managerHeading).not.toBeInTheDocument();
 
     await user.click(showManagersButton);
-    managerHeading = screen.getByRole("heading", {
-      name: /filter by manager/i,
+
+    const managerCardButton = screen.getByRole("button", {
+      name: /clive beagles/i,
     });
 
-    expect(managerHeading).toBeInTheDocument();
+    expect(managerCardButton).not.toHaveClass("shadow-2xl");
 
-    // Click on first manager
-    const managerOne = screen.getByRole("button", { name: /vishal bhatia/i });
-    await user.click(managerOne);
-    let funds = getFunds();
+    await user.click(managerCardButton);
+
+    const funds = getFunds();
+
+    expect(managerCardButton).toHaveClass("shadow-2xl");
     expect(funds).toHaveLength(2);
+  });
+  it("displays funds of selected managers", async () => {
+    const showManagersButton = screen.getByRole("button", {
+      name: /show managers/i,
+    });
 
-    // Click on second manager
-    const managerTwo = screen.getByRole("button", { name: /ada chan/i });
-    await user.click(managerTwo);
-    funds = await screen.findAllByTestId("fund");
+    await user.click(showManagersButton);
+
+    const managerOneCardButton = screen.getByRole("button", {
+      name: /clive beagles/i,
+    });
+    const managerTwoCardButton = screen.getByRole("button", {
+      name: /ada chan/i,
+    });
+
+    await user.click(managerOneCardButton);
+    await user.click(managerTwoCardButton);
+
+    const funds = getFunds();
+
     expect(funds).toHaveLength(3);
+  });
+  it("toggles between list and grid view", async () => {
+    let listView = screen.getByTestId("list-view");
+    const gridTabButton = screen.getByRole("button", {
+      name: /grid view/i,
+    });
+    const listTabButton = screen.getByRole("button", {
+      name: /list view/i,
+    });
+
+    expect(listView).toBeInTheDocument();
+
+    await user.click(gridTabButton);
+
+    const gridView = screen.getByTestId("grid-view");
+    expect(gridView).toBeInTheDocument();
+
+    await user.click(listTabButton);
+    listView = screen.getByTestId("list-view");
+    expect(listView).toBeInTheDocument();
   });
 });

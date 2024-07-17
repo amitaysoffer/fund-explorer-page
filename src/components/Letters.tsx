@@ -1,44 +1,54 @@
-import { useMemo } from "react";
-import data from "../data.json";
+import CloseIcon from "../assets/icons/CloseIcon";
+import useUniqueLetters from "../hooks/useUniqueLetters";
 
 type LettersProps = {
   onShowManagers: (val: boolean) => void;
   setCurrentLetter: (value: string) => void;
   currentLetter: string;
+  clearAllManagers: () => void;
 };
+
+const alphabet: string[] = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+];
 
 export default function Letters({
   setCurrentLetter,
   currentLetter,
   onShowManagers,
+  clearAllManagers,
 }: LettersProps) {
-  const uniqueLetters = useMemo(() => {
-    const managersNames = data.reduce((acc: string[], current) => {
-      if (current.data.manager.fund_manager) {
-        return [...acc, current.data.manager.fund_manager];
-      }
-
-      return acc;
-    }, []);
-
-    const letterMap: Record<string, boolean> = {};
-
-    managersNames.forEach((name) => {
-      for (const letter of name) {
-        const upperLetter = letter.trim().toUpperCase();
-
-        if (upperLetter >= "A" && upperLetter <= "Z") {
-          letterMap[upperLetter] = true;
-        }
-      }
-    });
-
-    return Object.keys(letterMap).sort();
-  }, []);
+  const uniqueLetters = useUniqueLetters();
 
   return (
     <div className="flex justify-between items-center pb-5 overflow-x-hidden">
       <h3 className="italic font-semibold">Filter by manager</h3>
+
       <ol className="flex gap-4">
         <button
           onClick={() => setCurrentLetter("All")}
@@ -49,7 +59,7 @@ export default function Letters({
         >
           <span>All</span>
         </button>
-        {uniqueLetters.map((letter, index) => (
+        {alphabet.map((letter, index) => (
           <button
             key={index}
             onClick={() => setCurrentLetter(letter)}
@@ -62,7 +72,13 @@ export default function Letters({
           </button>
         ))}
       </ol>
-      <button onClick={() => onShowManagers(false)}>X</button>
+      <button
+        onClick={() => {
+          onShowManagers(false), clearAllManagers();
+        }}
+      >
+        <CloseIcon />
+      </button>
     </div>
   );
 }

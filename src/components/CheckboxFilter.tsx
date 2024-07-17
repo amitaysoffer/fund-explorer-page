@@ -1,7 +1,7 @@
 import { Category, Fund } from "../types/funds";
 
 type RadioProps = {
-  filter: string;
+  label: string;
   category: Category;
   onClick: (category: string) => void;
   selectedFilters: string[];
@@ -9,9 +9,9 @@ type RadioProps = {
   selectedManagers: string[];
 };
 
-export default function Radio({
+export default function CheckboxFilter({
   category,
-  filter,
+  label,
   onClick,
   selectedFilters,
   funds,
@@ -26,26 +26,42 @@ export default function Radio({
   }, []);
 
   const isFilterDisabled =
-    !activeFilters.includes(filter) && selectedManagers.length > 0;
+    !activeFilters.includes(label) && selectedManagers.length > 0;
+
+  const updatedLabel = (label: string) => {
+    switch (label.toLowerCase()) {
+      case "asia":
+        return "Asian Equities";
+      case "europe":
+        return "Europen Equities";
+      case "dublin":
+        return "Dublin (Irish ICAV)";
+      case "london":
+        return "London (UK OEIC)";
+
+      default:
+        return label + " Equities";
+    }
+  };
 
   return (
     <label
-      className={`flex items-center cursor-pointer ${
+      className={`flex gap-2 items-center cursor-pointer ${
         isFilterDisabled ? "opacity-50 cursor-not-allowed" : ""
       }`}
     >
       <input
         disabled={isFilterDisabled}
         type="checkbox"
-        name={filter}
-        aria-label={filter}
-        onChange={() => onClick(filter)}
-        value={filter}
-        checked={selectedFilters.includes(filter)}
+        name={label}
+        aria-label={label}
+        onChange={() => onClick(label)}
+        value={label}
+        checked={selectedFilters.includes(label)}
         className="hidden peer"
       />
       <span className="w-5 h-5 border border-teal-600 bg-white peer-checked:bg-teal-check"></span>
-      <span className="ml-2 text-blue-light">{filter}</span>
+      <span className="ml-2 text-dark-blue">{updatedLabel(label)}</span>
     </label>
   );
 }

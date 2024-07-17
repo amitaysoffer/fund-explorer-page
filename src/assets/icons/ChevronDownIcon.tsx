@@ -1,4 +1,4 @@
-export default function RightArrow() {
+export default function ChevronDownIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,10 +10,9 @@ export default function RightArrow() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="feather feather-arrow-right"
+      className="feather feather-chevron-down"
     >
-      <line x1="5" y1="12" x2="19" y2="12"></line>
-      <polyline points="12 5 19 12 12 19"></polyline>
+      <polyline points="6 9 12 15 18 9"></polyline>
     </svg>
   );
 }

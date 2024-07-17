@@ -5,6 +5,7 @@ import image_3 from "../assets/profile-image-3.png";
 import image_4 from "../assets/profile-image-4.png";
 import image_5 from "../assets/profile-image-5.png";
 import image_6 from "../assets/profile-image-6.png";
+import { regionColourPicker } from "../util";
 
 type ManagerCardProps = {
   name: string;
@@ -46,14 +47,17 @@ export default function ManagerCard({
     }
   };
 
+  const regionColour = regionColourPicker(region);
+
   return (
     <button
       onClick={() => {
         filterManager(name);
       }}
-      className={`flex-none text-left w-44 bg-white shadow p-3 ${
+      data-testid="manager"
+      className={`flex-none text-left w-44 bg-white shadow p-3 border-l-4 ${
         isManagerSelected ? "shadow-2xl" : ""
-      }`}
+      } ${regionColour}`}
     >
       {imgSrc && <img src={imgSrc} alt={`${name} avatar`} />}
       <h3 className="mt-1">{name}</h3>

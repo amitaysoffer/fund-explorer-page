@@ -6,7 +6,7 @@ export default function useUniqueLetters() {
     const managersNames = data.reduce((acc: string[], current) => {
       const manager = current.data.manager.fund_manager;
       if (manager) {
-        return [...acc, manager];
+        return [...acc, manager[0]];
       }
 
       return acc;

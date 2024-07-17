@@ -1,4 +1,4 @@
-export default function RightArrow() {
+export default function UserIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,10 +10,10 @@ export default function RightArrow() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="feather feather-arrow-right"
+      className="feather feather-user"
     >
-      <line x1="5" y1="12" x2="19" y2="12"></line>
-      <polyline points="12 5 19 12 12 19"></polyline>
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+      <circle cx="12" cy="7" r="4"></circle>
     </svg>
   );
 }

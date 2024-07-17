@@ -1,16 +1,34 @@
+import ChevronDownIcon from "../assets/icons/ChevronDownIcon";
+import ChevronUpIcon from "../assets/icons/ChevronUpIcon";
 import RightArrow from "../assets/icons/RightArrow";
-import { Funds } from "../types/funds";
+import { Fund } from "../types/funds";
+import { regionColourPicker } from "../util";
 
-export default function ListView({ funds }: Funds) {
+type ListViewProps = {
+  funds: Fund[];
+  handleSortClick: () => void;
+};
+
+export default function ListView({ funds, handleSortClick }: ListViewProps) {
   return (
-    <div className="overflow-x-auto">
-      <div className="grid grid-cols-8 text-left font-semibold pb-4">
-        <div className="py-3 border-b col-span-2">Fund name / Benchmark</div>
-        <div className="py-3 border-b">Domicile</div>
-        <div className="py-3 border-b">Region</div>
-        <div className="py-3 border-b">Holdings</div>
-        <div className="py-3 border-b">Fund size</div>
-        <div className="py-3 border-b">Launch date</div>
+    <section className="overflow-x-auto" data-testid="list-view">
+      <div className="grid grid-cols-8 text-left font-semibold pb-4 border-b border-b-light-gray italic">
+        <div className="col-span-3 flex items-center gap-1">
+          <span>Fund name / Benchmark</span>
+          <button onClick={handleSortClick} className="text-gray-500">
+            <div className="h-2">
+              <ChevronUpIcon />
+            </div>
+            <div>
+              <ChevronDownIcon />
+            </div>
+          </button>
+        </div>
+        <div className="text-center">Domicile</div>
+        <div className="text-center">Region</div>
+        <div className="text-center">Holdings</div>
+        <div className="text-center">Fund size</div>
+        <div className="text-center">Launch date</div>
       </div>
       {funds.map((fund) => {
         const {
@@ -27,27 +45,32 @@ export default function ListView({ funds }: Funds) {
             },
           },
         } = fund;
+        const regionColour = regionColourPicker(region);
+
         return (
-          <div key={id} className="pb-6" data-testid="fund">
-            <div className="grid grid-cols-8 items-center bg-white shadow-md px-4 hover:shadow-xl">
-              <div className="py-3 col-span-2">
+          <div key={id} className="pb-2 pt-4" data-testid="fund">
+            <div
+              className={`grid grid-cols-8 items-center bg-white shadow-md px-4 hover:shadow-xl border-l-4 ${regionColour}`}
+            >
+              <div className="py-5 col-span-3">
                 <div className="font-semibold">{name}</div>
                 <div className="text-sm text-gray-600">{benchmark}</div>
               </div>
-              <div className="py-3">{domicile}</div>
-              <div className="py-3">{region}</div>
-              <div className="py-3">{holdings}</div>
-              <div className="py-3">{size}</div>
-              <div className="py-3">{launch_date}</div>
-              <div className="py-3">
-                <div className="border inline-block p-2 text-light-gray border-gray-light rounded-full cursor-pointer">
+              <div className="text-center">{domicile}</div>
+              <div className="text-center">{region}</div>
+              <div className="text-center">{holdings}</div>
+              <div className="text-center">{size}</div>
+              <div className="flex items-center gap-2 justify-end">
+                {launch_date}
+                <div className="border inline-block p-2 text-teal-500 border-teal-400 rounded-full cursor-pointer">
                   <RightArrow />
                 </div>
               </div>
+              <div className="text-center"></div>
             </div>
           </div>
         );
       })}
-    </div>
+    </section>
   );
 }
