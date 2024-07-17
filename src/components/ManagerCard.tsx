@@ -56,7 +56,7 @@ export default function ManagerCard({
       }}
       data-testid="manager"
       className={`flex-none text-left w-44 bg-white shadow p-3 border-l-4 ${
-        isManagerSelected ? "shadow-2xl" : ""
+        isManagerSelected ? "shadow-2xl border" : ""
       } ${regionColour}`}
     >
       {imgSrc && <img src={imgSrc} alt={`${name} avatar`} />}

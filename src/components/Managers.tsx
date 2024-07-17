@@ -51,7 +51,7 @@ export default function Managers({
           clearAllManagers={clearAllManagers}
         />
         <div>
-          <ul className="overflow-x-auto flex gap-4">
+          <div className="overflow-x-auto flex gap-5 pb-2">
             {uniqueFundsPerManager.map(
               ({
                 data: {
@@ -73,7 +73,7 @@ export default function Managers({
                 />
               )
             )}
-          </ul>
+          </div>
         </div>
         <ManagersLabels
           filterManager={handleFilterByManager}

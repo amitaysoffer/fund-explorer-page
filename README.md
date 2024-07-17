@@ -36,6 +36,4 @@ An app that utilises local data to search, filter and sort funds.
 
 ## Technical Notes
 
-- When a user selects a filter and then clicks the Show Managers button, all filters are cleared.
-- The same applies to managers. If a manager is selected and the user clicks Clear Managers, all filters done by manager cards are cleared.
 - Some funds don't have managers. I wasn't sure if I should add managers or not. Again, I didn't want to overcomplicate the design. I was told that I can "Feel free to add more managers," but by doing so, I might break parts of the design, like the region of each manager. So I decided to leave some funds without a manager, just as the design shows.

@@ -64,6 +64,10 @@ export default function App() {
   }
 
   function handleFilterByRegion(category: string) {
+    if (showManagers && selectedManagers.length === 0) {
+      setShowManagers(false);
+    }
+
     setSelectedRegions((prevState) => {
       if (prevState.includes(category)) {
         return prevState.filter((item) => item !== category);
@@ -74,6 +78,10 @@ export default function App() {
   }
 
   function handleFilterByDomicile(category: string) {
+    if (showManagers && selectedManagers.length === 0) {
+      setShowManagers(false);
+    }
+
     setSelectedDomiciles((prevState) => {
       if (prevState.includes(category)) {
         return prevState.filter((item) => item !== category);
