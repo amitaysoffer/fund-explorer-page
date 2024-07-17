@@ -2,7 +2,7 @@ import CloseIcon from "../assets/icons/CloseIcon";
 import RightArrow from "../assets/icons/RightArrow";
 import data from "../data.json";
 import { Fund } from "../types/funds";
-import { getFundsCategories } from "../util";
+import { getFundsCategories } from "../utils/util";
 import CheckboxFilter from "./CheckboxFilter";
 
 type SidePanelProps = {

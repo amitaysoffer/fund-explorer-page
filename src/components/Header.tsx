@@ -1,6 +1,6 @@
 import ChevronDownIcon from "../assets/icons/ChevronDownIcon";
 import ChevronUpIcon from "../assets/icons/ChevronUpIcon";
-import Search from "../assets/icons/Search";
+import SearchIcon from "../assets/icons/SearchIcon";
 import UserIcon from "../assets/icons/UserIcon";
 import logo from "../assets/JOH_logo.svg";
 
@@ -42,7 +42,7 @@ export default function Header() {
             </span>
             <span className=" font-extralight text-sm">UK | Professional</span>
           </div>
-          <Search />
+          <SearchIcon />
           <button className="">
             <i className="fas fa-search text-blue-900"></i>
           </button>

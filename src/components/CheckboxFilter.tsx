@@ -47,7 +47,7 @@ export default function CheckboxFilter({
   return (
     <label
       className={`flex gap-2 items-center cursor-pointer ${
-        isFilterDisabled ? "opacity-50 cursor-not-allowed" : ""
+        isFilterDisabled ? "opacity-20 cursor-not-allowed" : ""
       }`}
     >
       <input

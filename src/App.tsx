@@ -10,7 +10,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeaderBanner from "./components/HeaderBanner";
 import { Fund, sortOrder, ViewTab } from "./types/funds";
-import { sortFunds } from "./util";
+import { sortFunds } from "./utils/util";
 
 export default function App() {
   const [showManagers, setShowManagers] = useState(false);

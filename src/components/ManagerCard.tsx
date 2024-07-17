@@ -5,7 +5,7 @@ import image_3 from "../assets/profile-image-3.png";
 import image_4 from "../assets/profile-image-4.png";
 import image_5 from "../assets/profile-image-5.png";
 import image_6 from "../assets/profile-image-6.png";
-import { regionColourPicker } from "../util";
+import { regionColourPicker } from "../utils/util";
 
 type ManagerCardProps = {
   name: string;

@@ -1,4 +1,4 @@
-import { Category, Fund, sortOrder } from "./types/funds";
+import { Category, Fund, sortOrder } from "../types/funds";
 
 export function sortFunds(funds: Fund[], order: sortOrder) {
   return funds.sort((a, b) => {
