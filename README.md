@@ -10,7 +10,7 @@ An app that utilises local data to search, filter and sort funds.
 
 - Clone the repo locally or download the zip file.
 - In the terminal run `npm install; npm run dev`.
-- To run the tests `npm run test`.
+- To run the tests `npm run test` OR: `npm run test:ui`.
 - Enjoy!
 
 ## Technologies used
@@ -37,3 +37,4 @@ An app that utilises local data to search, filter and sort funds.
 ## Technical Notes
 
 - Some funds don't have managers. I wasn't sure if I should add managers or not. Again, I didn't want to overcomplicate the design. I was told that I can "Feel free to add more managers," but by doing so, I might break parts of the design, like the region of each manager. So I decided to leave some funds without a manager, just as the design shows.
+- I did not have your fonts, so there is a big discrepancy there.
