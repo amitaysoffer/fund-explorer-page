@@ -45,6 +45,14 @@ export default function Letters({
 }: LettersProps) {
   const uniqueLetters = useUniqueLetters();
 
+  function handleLetterClick(letter: string) {
+    if (uniqueLetters.includes(letter)) {
+      setCurrentLetter(letter);
+    } else {
+      alert(`Unfortunately no manager starts with the letter ${letter}`);
+    }
+  }
+
   return (
     <div className="flex justify-between items-center pb-5 overflow-x-hidden">
       <h3 className="italic font-semibold">Filter by manager</h3>
@@ -62,7 +70,7 @@ export default function Letters({
         {alphabet.map((letter, index) => (
           <button
             key={index}
-            onClick={() => setCurrentLetter(letter)}
+            onClick={() => handleLetterClick(letter)}
             className={`
             p-2 rounded-full w-8 h-8 justify-center items-center flex
             ${currentLetter === letter ? "bg-red-500 text-white" : ""}
