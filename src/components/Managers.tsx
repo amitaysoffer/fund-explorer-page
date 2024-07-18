@@ -43,7 +43,7 @@ export default function Managers({
 
   return (
     <section>
-      <div className="mb-6 border-b border-light-gray py-6 px-8">
+      <div className="mb-6 border-b border-light-gray py-5 px-8">
         <Letters
           setCurrentLetter={setCurrentLetter}
           currentLetter={currentLetter}

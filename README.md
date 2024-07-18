@@ -26,7 +26,6 @@ An app that utilises local data to search, filter and sort funds.
 - As a user, I want to be able to toggle between grid view and list view.
 - As a user, I want to search for funds using the search input text field.
 - As a user, I want to filter funds using checkboxes.
-- As a user, I want to filter funds by clicking on the funds' manager.
 - Unit tests and integration tests have been added to test all the acceptance criteria.
 
 ## Things to do
@@ -37,4 +36,4 @@ An app that utilises local data to search, filter and sort funds.
 ## Technical Notes
 
 - Some funds don't have managers. I wasn't sure if I should add managers or not. Again, I didn't want to overcomplicate the design. I was told that I can "Feel free to add more managers," but by doing so, I might break parts of the design, like the region of each manager. So I decided to leave some funds without a manager, just as the design shows.
-- I did not have your fonts, so there is a big discrepancy there.
+- I did not have the fonts that appear in the design, so there is a discrepancy there.
