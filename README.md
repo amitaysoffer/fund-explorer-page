@@ -35,5 +35,6 @@ An app that utilises local data to search, filter and sort funds.
 
 ## Technical Notes
 
+- When a user filters by region/domicile and then clicks the Show Managers button, the filters are cleared. I wasn't sure whether this is a glitch in the Figma design or the desired behavior, so I decided to go with the design.
 - Some funds don't have managers. I wasn't sure if I should add managers or not. Again, I didn't want to overcomplicate the design. I was told that I can "Feel free to add more managers," but by doing so, I might break parts of the design, like the region of each manager. So I decided to leave some funds without a manager, just as the design shows.
 - I did not have the fonts that appear in the design, so there is a discrepancy there.
